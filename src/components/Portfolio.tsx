@@ -3,42 +3,72 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Github, BookOpen } from 'lucide-react';
 
 // Project data
 const projects = [
   {
     id: 1,
-    title: 'Data Pipeline Automation',
-    category: 'Data Engineering',
-    image: '/images/projects/project1.jpg',
-    description: 'Built an automated data pipeline system that processes and transforms large datasets in real-time. Implemented error handling and monitoring.',
-    technologies: ['Python', 'Apache Airflow', 'AWS', 'Docker'],
+    title: 'Real-time Weather API',
+    category: 'Backend Development',
+    image: '/images/projects/weather-api.jpg',
+    description: 'Developed a real-time weather API service that provides accurate weather forecasts and historical data. Implemented caching and rate limiting for optimal performance.',
+    technologies: [
+      { name: 'Node.js', logo: '/logos/nodejs.png' },
+      { name: 'Express', logo: '/logos/express.png' },
+      { name: 'MongoDB', logo: '/logos/mongodb.png' },
+      { name: 'Redis', logo: '/logos/redis.png' },
+      { name: 'Docker', logo: '/logos/docker.png' }
+    ],
+    github: 'https://github.com/yourusername/weather-api',
+    article: 'https://medium.com/@yourusername/building-a-real-time-weather-api'
   },
   {
     id: 2,
-    title: 'Analytics Dashboard',
-    category: 'Data Visualization',
-    image: '/images/projects/project2.jpg',
-    description: 'Developed an interactive dashboard for business metrics visualization. Features include real-time updates and custom reporting.',
-    technologies: ['React', 'D3.js', 'TypeScript', 'Node.js'],
+    title: 'Crypto Hashrate/Price Analysis',
+    category: 'Data Analysis',
+    image: '/images/projects/crypto-analysis.jpg',
+    description: 'Built a comprehensive cryptocurrency analysis tool that correlates mining hashrates with price movements. Features include real-time data visualization and predictive analytics.',
+    technologies: [
+      { name: 'Python', logo: '/logos/python.png' },
+      { name: 'Pandas', logo: '/logos/pandas.png' },
+      { name: 'TensorFlow', logo: '/logos/tensorflow.png' },
+      { name: 'React', logo: '/logos/react.png' },
+      { name: 'D3.js', logo: '/logos/d3.png' }
+    ],
+    github: 'https://github.com/Jyothivardhana0009/crypto_temp',
+    article: 'https://medium.com/@yourusername/crypto-analysis-tool'
   },
   {
     id: 3,
-    title: 'ML Model Deployment',
-    category: 'Machine Learning',
-    image: '/images/projects/project3.jpg',
-    description: 'Deployed machine learning models in production with automated testing and monitoring. Reduced inference time by 40%.',
-    technologies: ['Python', 'TensorFlow', 'Kubernetes', 'Prometheus'],
+    title: 'Data Pipeline Automation',
+    category: 'Data Engineering',
+    image: '/images/projects/data-pipeline.jpg',
+    description: 'Designed and implemented an automated data pipeline system that processes and transforms large datasets in real-time. Features include error handling and monitoring.',
+    technologies: [
+      { name: 'Python', logo: '/logos/python.png' },
+      { name: 'Airflow', logo: '/logos/airflow.png' },
+      { name: 'AWS', logo: '/logos/aws.png' },
+      { name: 'Docker', logo: '/logos/docker.png' }
+    ],
+    github: 'https://github.com/yourusername/data-pipeline',
+    article: null
   },
   {
     id: 4,
-    title: 'ETL System',
-    category: 'Data Engineering',
-    image: '/images/projects/project4.jpg',
-    description: 'Designed and implemented an ETL system for processing financial data. Handles millions of records daily with 99.9% accuracy.',
-    technologies: ['Python', 'PostgreSQL', 'Apache Spark', 'Airflow'],
-  },
+    title: 'Analytics Dashboard',
+    category: 'Full Stack',
+    image: '/images/projects/analytics-dashboard.jpg',
+    description: 'Developed an interactive dashboard for business metrics visualization. Features include real-time updates and custom reporting capabilities.',
+    technologies: [
+      { name: 'React', logo: '/logos/react.png' },
+      { name: 'TypeScript', logo: '/logos/typescript.png' },
+      { name: 'Node.js', logo: '/logos/nodejs.png' },
+      { name: 'PostgreSQL', logo: '/logos/postgresql.png' }
+    ],
+    github: 'https://github.com/yourusername/analytics-dashboard',
+    article: 'https://medium.com/@yourusername/building-analytics-dashboard'
+  }
 ];
 
 // Modal component
@@ -82,15 +112,45 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
             <h3 className="text-2xl font-bold text-white mb-4">{project.title}</h3>
             <p className="text-gray-300 mb-6">{project.description}</p>
             
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-6">
               {project.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm"
+                  className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm flex items-center gap-2"
                 >
-                  {tech}
+                  <Image
+                    src={tech.logo}
+                    alt={tech.name}
+                    width={16}
+                    height={16}
+                    className="object-contain"
+                  />
+                  {tech.name}
                 </span>
               ))}
+            </div>
+
+            <div className="flex gap-4">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                <Github className="w-5 h-5" />
+                View Code
+              </a>
+              {project.article && (
+                <a
+                  href={project.article}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  <BookOpen className="w-5 h-5" />
+                  Read Article
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -139,6 +199,28 @@ export default function Portfolio() {
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <span className="text-blue-400 text-sm font-medium">{project.category}</span>
                   <h3 className="text-xl font-bold mt-2">{project.title}</h3>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {project.technologies.slice(0, 3).map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-gray-800/80 text-gray-300 rounded-full text-xs flex items-center gap-1"
+                      >
+                        <Image
+                          src={tech.logo}
+                          alt={tech.name}
+                          width={12}
+                          height={12}
+                          className="object-contain"
+                        />
+                        {tech.name}
+                      </span>
+                    ))}
+                    {project.technologies.length > 3 && (
+                      <span className="px-2 py-1 bg-gray-800/80 text-gray-300 rounded-full text-xs">
+                        +{project.technologies.length - 3} more
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>

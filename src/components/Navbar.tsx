@@ -68,7 +68,7 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
+                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 hover:scale-110 hover:text-blue-400 ${
                     pathname === item.href ? 'text-white' : ''
                   }`}
                 >
@@ -87,7 +87,7 @@ export default function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-300 hover:text-white transition-all duration-200 hover:scale-110"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -109,7 +109,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className={`text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2 ${
+                className={`text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2 transition-all duration-200 hover:scale-105 hover:text-blue-400 ${
                   pathname === item.href ? 'text-white' : ''
                 }`}
               >

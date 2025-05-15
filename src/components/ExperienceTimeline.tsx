@@ -1,57 +1,125 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { Briefcase } from 'lucide-react';
 import Image from 'next/image';
 
-// Sample data array
 const experiences = [
   {
     title: 'Systems Engineer',
     company: 'Infosys Pvt Ltd. (Florida Power and Light)',
     period: 'Dec 2021 - Jul 2023',
-    description: 'Developed and maintained enterprise web applications. Collaborated with cross-functional teams to deliver projects on time. Implemented CI/CD pipelines for faster deployments.',
-    logo: '/images/clients/company1.jpg',
+    description: [
+      'Built scalable pipelines using AWS Glue, Lambda, and MSK',
+      'Improved delivery speed by 15% with cross-functional collaboration',
+      'Developed and maintained enterprise web applications',
+      'Implemented CI/CD pipelines for faster deployments'
+    ],
+    logo: '/images/clients/infosys.jpg',
   },
   {
-    title: 'Frontend Developer',
-    company: 'Tech Solutions Inc.',
-    period: 'Aug 2023 - Present',
-    description: 'Built responsive UIs with React and Tailwind CSS. Optimized performance and accessibility. Mentored junior developers.',
-    logo: '/images/clients/company2.jpg',
+    title: 'Software Developer',
+    company: 'Digital IT Hub',
+    period: 'Jan 2020 - Dec 2021',
+    description: [
+      'Developed full-stack applications using React and Node.js',
+      'Implemented real-time data processing solutions',
+      'Optimized database queries resulting in 30% performance improvement',
+      'Mentored junior developers and conducted code reviews'
+    ],
+    logo: '/images/clients/digital-it.jpg',
   },
-  // Add more experiences as needed
+  {
+    title: 'Junior Developer',
+    company: 'Bharat Dynamics',
+    period: 'Jun 2019 - Dec 2019',
+    description: [
+      'Assisted in developing internal tools and utilities',
+      'Participated in code reviews and testing procedures',
+      'Contributed to documentation and knowledge base',
+      'Worked on bug fixes and feature implementations'
+    ],
+    logo: '/images/clients/bdl.jpg',
+  }
 ];
 
-const ExperienceTimeline = () => {
+export default function ExperienceTimeline() {
   return (
-    <section className="py-16 px-4 max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-2">Experience</h2>
-      <p className="text-center text-gray-400 mb-12">My professional journey</p>
-      <div className="relative flex flex-col items-center">
-        {/* Vertical timeline line */}
-        <div className="absolute left-1/2 top-0 w-1 h-full bg-blue-500 rounded-full -translate-x-1/2 z-0" />
-        <div className="w-full flex flex-col gap-12 z-10">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="relative flex justify-center items-center w-full">
-              {/* Timeline dot */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 border-4 border-white dark:border-gray-900 rounded-full z-20 shadow-md" />
-              {/* Card */}
-              <div className="w-full md:w-1/2">
-                <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-6 mx-auto transition-transform duration-200 hover:scale-105 hover:shadow-lg flex flex-col md:flex-row items-center gap-4">
-                  <div className="w-14 h-14 flex-shrink-0 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center overflow-hidden border border-gray-200 dark:border-gray-600">
-                    <Image src={exp.logo} alt={exp.company + ' logo'} width={48} height={48} className="object-contain w-10 h-10" />
-                  </div>
-                  <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-lg font-bold text-blue-600 dark:text-blue-400">{exp.title}</h3>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">{exp.company}</p>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">{exp.period}</div>
-                    <p className="text-gray-700 dark:text-gray-200 text-sm">{exp.description}</p>
+    <div className="py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="relative h-8 overflow-hidden text-2xl sm:text-3xl md:text-4xl text-black dark:text-white font-semibold text-center mb-12">
+            Work Experience
+          </h2>
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            My professional journey and achievements
+          </p>
+        </div>
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700" />
+
+          {/* Experience items */}
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                }`}
+              >
+                {/* Content */}
+                <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="w-12 h-12 relative mr-4">
+                        <Image
+                          src={exp.logo}
+                          alt={exp.company}
+                          fill
+                          className="rounded-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-black dark:text-white">
+                          {exp.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {exp.company}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-gray-500 dark:text-gray-400 mb-4">
+                      {exp.period}
+                    </p>
+                    <ul className="space-y-2">
+                      {exp.description.map((item, idx) => (
+                        <li 
+                          key={idx}
+                          className="text-gray-600 dark:text-gray-300 flex items-start"
+                        >
+                          <span className="text-blue-500 mr-2">•</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+
+                {/* Timeline dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                  <Briefcase className="w-4 h-4 text-white" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default ExperienceTimeline;
+}

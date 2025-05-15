@@ -1,71 +1,40 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 interface BackgroundVideoProps {
   darkVideoUrl: string;
   lightVideoUrl: string;
-  className?: string;
 }
 
-export default function BackgroundVideo({
-  darkVideoUrl,
-  lightVideoUrl,
-  className = '',
-}: BackgroundVideoProps) {
-  const darkVideoRef = useRef<HTMLVideoElement>(null);
-  const lightVideoRef = useRef<HTMLVideoElement>(null);
+export default function BackgroundVideo({ darkVideoUrl, lightVideoUrl }: BackgroundVideoProps) {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Ensure videos are playing when mounted
-    if (darkVideoRef.current) {
-      darkVideoRef.current.play().catch(() => {
-        // Handle autoplay restrictions
-        console.log('Autoplay prevented for dark video');
-      });
-    }
-    if (lightVideoRef.current) {
-      lightVideoRef.current.play().catch(() => {
-        // Handle autoplay restrictions
-        console.log('Autoplay prevented for light video');
-      });
-    }
+    setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return null;
+  }
+
   return (
-    <div className={`absolute inset-0 overflow-hidden ${className}`}>
-      {/* Dark Mode Video */}
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
       <video
-        ref={darkVideoRef}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          theme === 'dark' ? 'opacity-100' : 'opacity-0'
-        }`}
         autoPlay
         muted
         loop
         playsInline
+        className="absolute w-full h-full object-cover"
       >
-        <source src={darkVideoUrl} type="video/mp4" />
+        <source
+          src={theme === 'dark' ? darkVideoUrl : lightVideoUrl}
+          type="video/mp4"
+        />
       </video>
-
-      {/* Light Mode Video */}
-      <video
-        ref={lightVideoRef}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-          theme === 'light' ? 'opacity-100' : 'opacity-0'
-        }`}
-        autoPlay
-        muted
-        loop
-        playsInline
-      >
-        <source src={lightVideoUrl} type="video/mp4" />
-      </video>
-
-      {/* Optional: Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
     </div>
   );
 } 

@@ -42,7 +42,7 @@ export default function About() {
           >
             {/* Name and Title */}
             <div className="space-y-2">
-              <h2 className="text-4xl font-bold text-white">
+              <h2 className="text-4xl font-bold text-black dark:text-white">
                 John Doe
               </h2>
               <p className="text-xl text-blue-400">
