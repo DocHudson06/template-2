@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Download, Mail } from 'lucide-react';
+import AnimatedJobTitles from './AnimatedJobTitles';
 
 export default function Hero() {
   return (
@@ -35,9 +36,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="space-y-2"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-medium text-gray-300">
-                <span className="text-blue-400">Data</span> Operations Engineer
-              </h2>
+              <AnimatedJobTitles titles={["Senior Data Engineer", "Full-stack Developer", "Tech Enthusiast"]} />
               <p className="text-lg sm:text-xl text-gray-400 max-w-2xl">
                 Transforming complex data challenges into elegant solutions through innovative engineering and automation.
               </p>

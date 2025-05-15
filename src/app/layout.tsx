@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import InitialLoader from "@/components/InitialLoader";
 import { ThemeProvider } from "next-themes";
+import BackgroundVideo from "@/components/BackgroundVideo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <BackgroundVideo darkVideoUrl="/videos/bg-dark.mp4" lightVideoUrl="/videos/bg-light.mp4" />
           <InitialLoader />
           {children}
           <Toaster />

@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Calendar, Briefcase, GraduationCap } from 'lucide-react';
-import Experience from "@/components/Experience";
 
 export default function About() {
   return (

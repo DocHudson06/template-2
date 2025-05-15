@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import Portfolio from "@/components/Portfolio";
-import Contact from "@/components/Contact";
+import ContactInfo from "@/components/ContactInfo";
 
 export default function HomePage() {
   return (
@@ -13,9 +13,19 @@ export default function HomePage() {
       <main className="bg-background text-white">
         <Hero />
         <About />
-        <ExperienceTimeline />
+        <section id="experience" className="py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Experience</h2>
+            <ExperienceTimeline />
+          </div>
+        </section>
         <Portfolio />
-        <Contact />
+        <section id="contact" className="py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Contact</h2>
+            <ContactInfo />
+          </div>
+        </section>
       </main>
     </>
   );

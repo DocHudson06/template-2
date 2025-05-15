@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, FolderGit2, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +22,11 @@ export default function Navbar() {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Experience', href: '/#experience' },
-    { name: 'Portfolio', href: '/#portfolio' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Home', href: '/', icon: <Home className="w-5 h-5" /> },
+    { name: 'About', href: '/#about', icon: <User className="w-5 h-5" /> },
+    { name: 'Experience', href: '/#experience', icon: <Briefcase className="w-5 h-5" /> },
+    { name: 'Portfolio', href: '/#portfolio', icon: <FolderGit2 className="w-5 h-5" /> },
+    { name: 'Contact', href: '/#contact', icon: <Mail className="w-5 h-5" /> },
   ];
 
   const handleNavClick = (href: string) => {
@@ -60,25 +61,28 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="flex items-center space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
                     pathname === item.href ? 'text-white' : ''
                   }`}
                 >
+                  {item.icon}
                   {item.name}
                 </Link>
               ))}
             </div>
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-4">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
@@ -105,10 +109,11 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className={`text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium ${
+                className={`text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center gap-2 ${
                   pathname === item.href ? 'text-white' : ''
                 }`}
               >
+                {item.icon}
                 {item.name}
               </Link>
             ))}
