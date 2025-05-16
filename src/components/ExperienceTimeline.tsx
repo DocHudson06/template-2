@@ -45,20 +45,22 @@ const experiences = [
 
 export default function ExperienceTimeline() {
   return (
-    <div className="py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="relative h-8 overflow-hidden text-2xl sm:text-3xl md:text-4xl text-black dark:text-white font-semibold text-center mb-12">
-            Work Experience
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-            My professional journey and achievements
-          </p>
-        </div>
+    <section id="experience" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
+          <p className="text-gray-600 dark:text-gray-300">My professional journey and achievements</p>
+        </motion.div>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200/50 dark:bg-gray-700/50" />
 
           {/* Experience items */}
           <div className="space-y-12">
@@ -75,18 +77,19 @@ export default function ExperienceTimeline() {
               >
                 {/* Content */}
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                  <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                  <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all">
                     <div className="flex items-center mb-4">
                       <div className="w-12 h-12 relative mr-4">
                         <Image
                           src={exp.logo}
                           alt={exp.company}
                           fill
+                          sizes="48px"
                           className="rounded-full object-cover"
                         />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-black dark:text-white">
+                        <h3 className="text-xl font-semibold">
                           {exp.title}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-300">
@@ -94,7 +97,7 @@ export default function ExperienceTimeline() {
                         </p>
                       </div>
                     </div>
-                    <p className="text-gray-500 dark:text-gray-400 mb-4">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
                       {exp.period}
                     </p>
                     <ul className="space-y-2">
@@ -103,7 +106,7 @@ export default function ExperienceTimeline() {
                           key={idx}
                           className="text-gray-600 dark:text-gray-300 flex items-start"
                         >
-                          <span className="text-blue-500 mr-2">•</span>
+                          <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
                           {item}
                         </li>
                       ))}
@@ -112,7 +115,7 @@ export default function ExperienceTimeline() {
                 </div>
 
                 {/* Timeline dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-600 dark:bg-blue-400 rounded-full flex items-center justify-center shadow-lg">
                   <Briefcase className="w-4 h-4 text-white" />
                 </div>
               </motion.div>
@@ -120,6 +123,6 @@ export default function ExperienceTimeline() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

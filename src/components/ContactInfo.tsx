@@ -13,16 +13,16 @@ export default function ContactInfo() {
       href: 'mailto:vardhanrao9849@gmail.com'
     },
     {
-      icon: <MapPin className="w-5 h-5" />,
-      label: 'Location',
-      value: 'Tampa, Florida',
-      href: '#'
-    },
-    {
       icon: <Phone className="w-5 h-5" />,
       label: 'Phone',
       value: '+1-813-797-9106',
       href: 'tel:+18137979106'
+    },
+    {
+      icon: <MapPin className="w-5 h-5" />,
+      label: 'Location',
+      value: 'Tampa, FL',
+      href: 'https://maps.google.com/?q=Tampa,FL'
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
@@ -39,10 +39,10 @@ export default function ContactInfo() {
   ];
 
   return (
-    <div className="py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-black dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-4xl">
             Contact Information
           </h2>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
@@ -50,30 +50,26 @@ export default function ContactInfo() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {contactItems.map((item, index) => (
             <motion.a
-              key={index}
+              key={item.label}
               href={item.href}
-              target={item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center p-4 rounded-lg bg-white/10 dark:bg-gray-800/10 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all backdrop-blur-sm"
             >
-              <div className="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mr-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-100/20 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
                 {item.icon}
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-black dark:text-white">
-                  {item.label}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {item.value}
-                </p>
+                <h3 className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.label}</h3>
+                <p className="text-base font-medium">{item.value}</p>
               </div>
             </motion.a>
           ))}
@@ -95,6 +91,6 @@ export default function ContactInfo() {
           </Button>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 } 

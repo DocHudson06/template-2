@@ -1,40 +1,30 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
+import { useEffect, useRef } from 'react';
 
-interface BackgroundVideoProps {
-  darkVideoUrl: string;
-  lightVideoUrl: string;
-}
-
-export default function BackgroundVideo({ darkVideoUrl, lightVideoUrl }: BackgroundVideoProps) {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+export default function BackgroundVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-black/50 dark:bg-black/70" />
+    <div className="fixed inset-0 w-full h-full overflow-hidden">
       <video
+        ref={videoRef}
         autoPlay
-        muted
         loop
+        muted
         playsInline
-        className="absolute w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source
-          src={theme === 'dark' ? darkVideoUrl : lightVideoUrl}
-          type="video/mp4"
-        />
+        <source src="/videos/background.mp4" type="video/mp4" />
       </video>
+      <div className="absolute inset-0 bg-black/10 backdrop-blur-[1px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 pointer-events-none" />
     </div>
   );
 } 

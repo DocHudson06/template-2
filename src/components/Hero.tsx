@@ -1,115 +1,145 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Mail } from 'lucide-react';
-import AnimatedJobTitles from './AnimatedJobTitles';
+import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Hero() {
-  const techStack = [
-    { name: 'React', icon: '⚛️' },
-    { name: 'TypeScript', icon: '📘' },
-    { name: 'Node.js', icon: '🟢' },
-    { name: 'Python', icon: '🐍' },
-    { name: 'AWS', icon: '☁️' },
-    { name: 'Docker', icon: '🐳' },
-  ];
-
   return (
-    <section className="relative w-full min-h-screen bg-gray-900 flex items-center">
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 to-gray-900 z-0" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
+
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 dark:bg-purple-500/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Name and Title */}
+          {/* Left column - Text content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-6"
+            className="text-center lg:text-left"
           >
-            <div className="flex flex-col items-start space-y-4">
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-4xl sm:text-5xl md:text-6xl font-bold text-white"
-              >
-                John Doe
-              </motion.h1>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="space-y-2"
-              >
-                <AnimatedJobTitles 
-                  titles={["Senior Data Engineer", "Full-stack Developer", "Tech Enthusiast"]} 
-                  className="text-2xl sm:text-3xl md:text-4xl text-blue-400 font-semibold"
-                />
-                <p className="text-lg sm:text-xl text-gray-400 max-w-2xl">
-                  Transforming complex data challenges into elegant solutions through innovative engineering and automation.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Buttons */}
-            <motion.div
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+            >
+              Hi, I'm Jyothi Vardhana Rao Metta
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-xl text-gray-600 dark:text-gray-300 mb-8"
+            >
+              Full Stack Developer & Cloud Engineer
+            </motion.p>
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-6"
+              className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
             >
-              <motion.a
-                href="/cv.pdf"
-                download
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              I build modern web applications and cloud solutions with a focus on performance, scalability, and user experience.
+            </motion.p>
+
+            {/* Social links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
+            >
+              <Link
+                href="https://github.com/Jyothivardhana0009"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
               >
-                <Download className="w-5 h-5" />
-                Download CV
-              </motion.a>
-              
-              <motion.a
+                <Github className="w-6 h-6" />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/jyothi-vardhana-rao-metta-515213193/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+              >
+                <Linkedin className="w-6 h-6" />
+              </Link>
+              <Link
+                href="mailto:vardhanrao9849@gmail.com"
+                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+              >
+                <Mail className="w-6 h-6" />
+              </Link>
+            </motion.div>
+
+            {/* CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-4"
+            >
+              <Link
                 href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-lg font-medium hover:bg-gray-700 transition-colors"
+                className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
               >
-                <Mail className="w-5 h-5" />
-                Contact Me
-              </motion.a>
+                Get in Touch
+              </Link>
+              <Link
+                href="#portfolio"
+                className="px-8 py-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+              >
+                View My Work
+              </Link>
             </motion.div>
           </motion.div>
 
-          {/* Right side - Tech Stack Grid */}
+          {/* Right column - Profile image */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-4"
+            className="relative"
           >
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 * index }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg flex flex-col items-center justify-center gap-2 hover:bg-gray-800/70 transition-colors"
-              >
-                <span className="text-3xl">{tech.icon}</span>
-                <span className="text-white font-medium">{tech.name}</span>
-              </motion.div>
-            ))}
+            <div className="relative w-64 h-64 mx-auto lg:mx-0">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-20" />
+              <Image
+                src="/images/profile.jpg"
+                alt="Jyothi Vardhana Rao Metta"
+                fill
+                sizes="(max-width: 768px) 256px, 256px"
+                className="object-cover rounded-full"
+                priority
+              />
+            </div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent" />
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <Link
+            href="#about"
+            className="p-2 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+          >
+            <ArrowDown className="w-6 h-6 animate-bounce" />
+          </Link>
+        </motion.div>
+      </div>
     </section>
   );
 } 

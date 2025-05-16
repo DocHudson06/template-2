@@ -7,6 +7,10 @@ import About from "@/components/About";
 import ExperienceTimeline from "@/components/ExperienceTimeline";
 import Portfolio from "@/components/Portfolio";
 import ContactInfo from "@/components/ContactInfo";
+import Skills from '@/components/Skills';
+import Education from '@/components/Education';
+import Footer from '@/components/Footer';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -32,7 +36,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="bg-background text-white">
+      <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <Hero />
         <motion.section
           id="about"
@@ -72,6 +76,28 @@ export default function HomePage() {
         </motion.section>
 
         <motion.section
+          id="skills"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <Skills />
+        </motion.section>
+
+        <motion.section
+          id="education"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <Education />
+        </motion.section>
+
+        <motion.section
           id="contact"
           variants={sectionVariants}
           initial="hidden"
@@ -85,6 +111,8 @@ export default function HomePage() {
             <ContactInfo />
           </div>
         </motion.section>
+
+        <Footer />
       </main>
     </>
   );

@@ -1,54 +1,25 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import { Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { Sun, Moon } from 'lucide-react';
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="relative w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-800 p-2 transition-colors duration-200"
+      className="p-2 rounded-lg bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
       aria-label="Toggle theme"
     >
-      <motion.div
-        initial={false}
-        animate={{
-          rotate: theme === 'dark' ? 180 : 0,
-          scale: theme === 'dark' ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="absolute inset-0 flex items-center justify-center"
-      >
-        <Sun className="w-5 h-5 text-gray-800 dark:text-gray-200" />
-      </motion.div>
-
-      <motion.div
-        initial={false}
-        animate={{
-          rotate: theme === 'dark' ? 0 : -180,
-          scale: theme === 'dark' ? 0 : 1,
-        }}
-        transition={{ duration: 0.3 }}
-        className="absolute inset-0 flex items-center justify-center"
-      >
-        <Moon className="w-5 h-5 text-gray-800 dark:text-gray-200" />
-      </motion.div>
+      {theme === 'dark' ? (
+        <Sun className="w-5 h-5" />
+      ) : (
+        <Moon className="w-5 h-5" />
+      )}
     </motion.button>
   );
 } 

@@ -1,61 +1,61 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './GlitchImage.module.css';
 
 interface GlitchImageProps {
-  imageUrl: string;
+  src: string;
   alt?: string;
   className?: string;
+  priority?: boolean;
 }
 
-export default function GlitchImage({ imageUrl, alt = 'Profile', className = '' }: GlitchImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
+export default function GlitchImage({ 
+  src, 
+  alt = '', 
+  className = '',
+  priority = false 
+}: GlitchImageProps) {
+  const [mounted, setMounted] = useState(false);
+  const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
-    // Simulate image loading
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
+    setMounted(true);
+    const glitchInterval = setInterval(() => {
+      setIsGlitching(true);
+      setTimeout(() => setIsGlitching(false), 300);
+    }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => clearInterval(glitchInterval);
   }, []);
 
+  if (!mounted) {
+    return (
+      <div className={`relative ${className}`}>
+        <div className="w-full h-full bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse" />
+      </div>
+    );
+  }
+
   return (
-    <div className={`relative w-full h-full ${className}`}>
-      {/* Original Image */}
-      <div 
-        className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      />
-
-      {/* Glitch Layers */}
-      <div className={`absolute inset-0 ${styles.glitchContainer}`}>
-        {/* Red Layer */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${styles.glitchLayer} ${styles.redLayer}`}
-          style={{ backgroundImage: `url(${imageUrl})` }}
+    <div className={`relative ${className}`}>
+      <div className={`${styles.glitchWrapper} ${isGlitching ? styles.active : ''}`}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover rounded-lg shadow-xl"
+          priority={priority}
         />
-
-        {/* Green Layer */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${styles.glitchLayer} ${styles.greenLayer}`}
-          style={{ backgroundImage: `url(${imageUrl})` }}
-        />
-
-        {/* Blue Layer */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${styles.glitchLayer} ${styles.blueLayer}`}
-          style={{ backgroundImage: `url(${imageUrl})` }}
-        />
-
-        {/* Flash Layer */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat ${styles.glitchLayer} ${styles.flashLayer}`}
-          style={{ backgroundImage: `url(${imageUrl})` }}
-        />
+        {[...Array(4)].map((_, i) => (
+          <div
+            key={i}
+            className={styles.glitchLayer}
+            style={{ backgroundImage: `url(${src})` }}
+          />
+        ))}
       </div>
     </div>
   );
