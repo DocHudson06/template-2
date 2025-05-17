@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-32">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
 
@@ -18,7 +18,7 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left column - Text content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
             >
               Hi, I'm Jyothi Vardhana Rao Metta
             </motion.h1>
@@ -56,30 +56,36 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
+              className="flex flex-wrap justify-center lg:justify-start gap-6 mb-2"
             >
-              <Link
+              <motion.a
                 href="https://github.com/Jyothivardhana0009"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
               >
                 <Github className="w-6 h-6" />
-              </Link>
-              <Link
+              </motion.a>
+              <motion.a
                 href="https://www.linkedin.com/in/jyothi-vardhana-rao-metta-515213193/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
               >
                 <Linkedin className="w-6 h-6" />
-              </Link>
-              <Link
+              </motion.a>
+              <motion.a
                 href="mailto:vardhanrao9849@gmail.com"
-                className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+                whileHover={{ scale: 1.25 }}
+                whileTap={{ scale: 0.95 }}
+                className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
               >
                 <Mail className="w-6 h-6" />
-              </Link>
+              </motion.a>
             </motion.div>
 
             {/* CTA buttons */}
@@ -87,20 +93,24 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="flex flex-wrap justify-center lg:justify-start gap-4"
+              className="flex flex-wrap justify-center lg:justify-start gap-6"
             >
-              <Link
+              <motion.a
                 href="#contact"
-                className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 text-lg font-semibold"
               >
                 Get in Touch
-              </Link>
-              <Link
+              </motion.a>
+              <motion.a
                 href="#portfolio"
-                className="px-8 py-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300 text-lg font-semibold"
               >
                 View My Work
-              </Link>
+              </motion.a>
             </motion.div>
           </motion.div>
 
@@ -109,15 +119,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative"
+            className="relative flex justify-center lg:justify-end items-start"
           >
-            <div className="relative w-64 h-64 mx-auto lg:mx-0">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl opacity-20" />
+            <div className="relative w-[28rem] h-[28rem] min-w-[18rem] min-h-[18rem]">
               <Image
                 src="/images/profile.jpg"
                 alt="Jyothi Vardhana Rao Metta"
                 fill
-                sizes="(max-width: 768px) 256px, 256px"
+                sizes="(max-width: 768px) 448px, 448px"
                 className="object-cover rounded-full"
                 priority
               />
@@ -132,12 +141,14 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 1.2 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <Link
+          <motion.a
             href="#about"
-            className="p-2 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
           >
             <ArrowDown className="w-6 h-6 animate-bounce" />
-          </Link>
+          </motion.a>
         </motion.div>
       </div>
     </section>

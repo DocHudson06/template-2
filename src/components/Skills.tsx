@@ -73,6 +73,8 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
+              whileHover={{ scale: 1.02, rotate: 1 }}
+              whileTap={{ scale: 0.98 }}
               className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
             >
               <h3 className="text-xl font-semibold mb-6 text-center">{skillGroup.category}</h3>
@@ -84,10 +86,14 @@ export default function Skills() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
                     className="flex flex-col items-center p-4 bg-white/10 dark:bg-gray-700/10 backdrop-blur-sm rounded-lg hover:bg-white/20 dark:hover:bg-gray-700/20 transition-all"
                   >
-                    <div className="w-12 h-12 relative mb-2">
+                    <motion.div 
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      className="w-12 h-12 relative mb-2"
+                    >
                       <Image
                         src={skill.logo}
                         alt={skill.name}
@@ -95,8 +101,13 @@ export default function Skills() {
                         sizes="48px"
                         className="object-contain"
                       />
-                    </div>
-                    <span className="text-sm font-medium text-center">{skill.name}</span>
+                    </motion.div>
+                    <motion.span 
+                      whileHover={{ scale: 1.1 }}
+                      className="text-sm font-medium text-center"
+                    >
+                      {skill.name}
+                    </motion.span>
                   </motion.div>
                 ))}
               </div>

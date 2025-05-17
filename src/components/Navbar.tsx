@@ -1,16 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, User, Briefcase, FolderGit2, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Home', href: '#', icon: Home },
+  { name: 'About', href: '#about', icon: User },
+  { name: 'Experience', href: '#experience', icon: Briefcase },
+  { name: 'Portfolio', href: '#portfolio', icon: FolderGit2 },
+  { name: 'Contact', href: '#contact', icon: Mail }
 ];
 
 export default function Navbar() {
@@ -41,7 +42,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="#"
-              className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+              className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 hover:scale-110 transition-transform duration-200"
             >
               JVR
             </Link>
@@ -52,8 +53,9 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-110 transition-all duration-200"
                 >
+                  <item.icon className="w-5 h-5" />
                   {item.name}
                 </Link>
               ))}
@@ -87,8 +89,9 @@ export default function Navbar() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-gray-800/10 transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-gray-800/10 hover:scale-105 transition-all duration-200"
                   >
+                    <item.icon className="w-5 h-5" />
                     {item.name}
                   </Link>
                 ))}
