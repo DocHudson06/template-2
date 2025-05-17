@@ -57,7 +57,7 @@ export default function About() {
             <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Starting from my early days in software development, I've worked on diverse projects ranging from enterprise applications to cloud infrastructure. My experience spans across various industries, giving me a unique perspective on solving complex technical challenges.
+                Starting from my early days in software development, I&apos;ve worked on diverse projects ranging from enterprise applications to cloud infrastructure. My experience spans across various industries, giving me a unique perspective on solving complex technical challenges.
               </p>
             </div>
 
