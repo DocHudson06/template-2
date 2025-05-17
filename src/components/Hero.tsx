@@ -32,7 +32,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
             >
-              Hi, I'm Jyothi Vardhana Rao Metta
+              Hi, I&apos;m Jyothi Vardhana Rao Metta
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}

@@ -84,7 +84,7 @@ export default function ContactInfo() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-gray-600 dark:text-gray-300">Let's discuss your next project</p>
+          <p className="text-gray-600 dark:text-gray-300">Let&apos;s discuss your next project</p>
         </motion.div>
 
         {/* Responsive grid: 1 col (xs), 2 col (md), 3 col (lg+) */}

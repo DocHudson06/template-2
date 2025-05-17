@@ -50,7 +50,7 @@ export default function About() {
             <div className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-2xl font-semibold mb-4">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                I'm a passionate Full Stack Developer and Cloud Engineer with a strong foundation in both frontend and backend technologies. With expertise in modern web frameworks and cloud platforms, I specialize in building scalable and performant applications.
+                I&apos;m a passionate Full Stack Developer and Cloud Engineer with a strong foundation in both frontend and backend technologies. With expertise in modern web frameworks and cloud platforms, I specialize in building scalable and performant applications.
               </p>
             </div>
 
