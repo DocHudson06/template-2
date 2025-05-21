@@ -1,0 +1,153 @@
+.portfolioContainer {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(59, 130, 246, 0.5) transparent;
+}
+
+.portfolioContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.portfolioContainer::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+.portfolioContainer::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.portfolioContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  min-width: min-content;
+}
+
+.projectCard {
+  position: relative;
+  min-width: 300px;
+  aspect-ratio: 9/16;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.projectCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.featuredCard {
+  composes: projectCard;
+  border-width: 2px;
+  border-image: linear-gradient(45deg, #3b82f6, #8b5cf6) 1;
+  animation: borderRotate 4s linear infinite;
+}
+
+.featuredCard:hover {
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+}
+
+.cardContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.projectCard:hover .cardImage {
+  transform: scale(1.1);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.cardCategory {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cardFooter {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.techBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: white;
+}
+
+@keyframes borderRotate {
+  0% {
+    border-image: linear-gradient(0deg, #3b82f6, #8b5cf6) 1;
+  }
+  100% {
+    border-image: linear-gradient(360deg, #3b82f6, #8b5cf6) 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .projectCard {
+    min-width: 250px;
+  }
+  
+  .cardTitle {
+    font-size: 1.25rem;
+  }
+} 

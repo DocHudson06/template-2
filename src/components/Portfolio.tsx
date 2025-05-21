@@ -1,123 +1,130 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Github, BookOpen } from 'lucide-react';
+import { X, Github, BookOpen, FolderGit2 } from 'lucide-react';
+import Image from 'next/image';
+import AnimatedSectionTitle from './AnimatedSectionTitle';
 
-// Project data
-const projects = [
+// Project data structure
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  technologies: {
+    name: string;
+    logo: string;
+  }[];
+  github?: string;
+  article?: string;
+  image?: string;
+}
+
+const projects: Project[] = [
   {
-    id: 1,
+    id: 'project1',
+    title: 'Latest CSS Guides',
+    category: 'Featured Project',
+    description: 'A comprehensive collection of modern CSS techniques and best practices. Includes guides on animations, layouts, and responsive design.',
+    technologies: [
+      { name: 'CSS3', logo: '/logos/css3.png' },
+      { name: 'Sass', logo: '/logos/sass.png' },
+      { name: 'Tailwind', logo: '/logos/tailwind.png' }
+    ],
+    github: 'https://github.com/yourusername/css-guides',
+    article: 'https://medium.com/@vardhanrao9849/css-guides',
+    image: '/images/portfolio-covers/project1-cover.jpg'
+  },
+  {
+    id: 'project2',
     title: 'Real-time Weather API',
     category: 'Backend Development',
-    image: '/images/projects/weather-api.jpg',
     description: 'Developed a real-time weather API service that provides accurate weather forecasts and historical data. Implemented caching and rate limiting for optimal performance.',
     technologies: [
       { name: 'Node.js', logo: '/logos/nodejs.png' },
       { name: 'Express', logo: '/logos/express.png' },
-      { name: 'MongoDB', logo: '/logos/mongodb.png' },
-      { name: 'Redis', logo: '/logos/redis.png' },
-      { name: 'Docker', logo: '/logos/docker.png' }
+      { name: 'MongoDB', logo: '/logos/mongodb.png' }
     ],
     github: 'https://github.com/yourusername/weather-api',
-    article: 'https://medium.com/@vardhanrao9849/ev-analysis-e62bf7abf8da'
+    article: 'https://medium.com/@vardhanrao9849/ev-analysis-e62bf7abf8da',
+    image: '/images/portfolio-covers/project2-cover.jpg'
   },
   {
-    id: 2,
+    id: 'project3',
     title: 'Crypto Hashrate/Price Analysis',
     category: 'Data Analysis',
-    image: '/images/projects/crypto-analysis.jpg',
     description: 'Built a comprehensive cryptocurrency analysis tool that correlates mining hashrates with price movements. Features include real-time data visualization and predictive analytics.',
     technologies: [
       { name: 'Python', logo: '/logos/python.png' },
       { name: 'Pandas', logo: '/logos/pandas.png' },
-      { name: 'TensorFlow', logo: '/logos/tensorflow.png' },
-      { name: 'React', logo: '/logos/react.png' },
-      { name: 'D3.js', logo: '/logos/d3.png' }
+      { name: 'TensorFlow', logo: '/logos/tensorflow.png' }
     ],
     github: 'https://github.com/Jyothivardhana0009/crypto_temp',
-    article: 'https://medium.com/@vardhanrao9849/can-the-weather-influence-cryptocurrency-prices-39eedc0ae515'
-  },
-  {
-    id: 3,
-    title: 'Data Pipeline Automation',
-    category: 'Data Engineering',
-    image: '/images/projects/data-pipeline.jpg',
-    description: 'Designed and implemented an automated data pipeline system that processes and transforms large datasets in real-time. Features include error handling and monitoring.',
-    technologies: [
-      { name: 'Python', logo: '/logos/python.png' },
-      { name: 'Airflow', logo: '/logos/airflow.png' },
-      { name: 'AWS', logo: '/logos/aws.png' },
-      { name: 'Docker', logo: '/logos/docker.png' }
-    ],
-    github: 'https://github.com/yourusername/data-pipeline',
-    article: null
-  },
-  {
-    id: 4,
-    title: 'Data Pipeline Automation',
-    category: 'Data Engineering',
-    image: '/images/projects/data-pipeline.jpg',
-    description: 'Designed and implemented an automated data pipeline system that processes and transforms large datasets in real-time. Features include error handling and monitoring.',
-    technologies: [
-      { name: 'Python', logo: '/logos/python.png' },
-      { name: 'Airflow', logo: '/logos/airflow.png' },
-      { name: 'AWS', logo: '/logos/aws.png' },
-      { name: 'Docker', logo: '/logos/docker.png' }
-    ],
-    github: 'https://github.com/yourusername/data-pipeline',
-    article: null
+    article: 'https://medium.com/@vardhanrao9849/can-the-weather-influence-cryptocurrency-prices-39eedc0ae515',
+    image: '/images/portfolio-covers/project3-cover.jpg'
   }
 ];
 
-// Modal component
-function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClose: () => void }) {
+// Animation variants for the heading
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }),
+  exit: (i: number) => ({
+    opacity: 0,
+    y: -20,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.2,
+      ease: "easeIn"
+    }
+  })
+};
+
+// Modal component for project details
+const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
-        <div className="relative">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white z-10"
+          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
           
-          <div className="relative h-64 sm:h-96">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover rounded-t-lg"
-            />
-          </div>
+        <div className="p-6">
+          <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-4">{project.category}</p>
+          <p className="text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
           
-          <div className="p-6">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">{project.category}</span>
-            </div>
-            <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">{project.description}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-6">
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold mb-2">Technologies Used</h3>
+            <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-white/10 dark:bg-gray-700/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full text-sm flex items-center gap-2"
+                  className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm flex items-center gap-2"
                 >
                   <Image
                     src={tech.logo}
@@ -130,77 +137,108 @@ function ProjectModal({ project, onClose }: { project: typeof projects[0]; onClo
                 </span>
               ))}
             </div>
+            </div>
 
             <div className="flex gap-4">
+            {project.github && (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 dark:bg-gray-700/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-lg hover:bg-white/20 dark:hover:bg-gray-700/20 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
               >
                 <Github className="w-5 h-5" />
                 View Code
               </a>
+            )}
               {project.article && (
                 <a
                   href={project.article}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
                 >
                   <BookOpen className="w-5 h-5" />
                   Read Article
                 </a>
               )}
-            </div>
           </div>
         </div>
       </motion.div>
     </motion.div>
   );
-}
+};
 
 export default function Portfolio() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="portfolio" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border portfolio-glow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Portfolio</h2>
-          <p className="text-gray-600 dark:text-gray-300">Check out some of my recent projects</p>
+          <AnimatedSectionTitle
+            title="Portfolio"
+            icon={FolderGit2}
+            description="Check out some of my recent work"
+          />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ scale: 1.02 }}
               className="group cursor-pointer"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative h-64 rounded-lg overflow-hidden bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all">
+              <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
+                {/* Project cover image or placeholder */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-400/20 dark:to-purple-400/20 rounded-xl overflow-hidden">
+                  {project.image ? (
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-blue-600 dark:text-blue-400 text-sm font-medium">{project.category}</span>
-                    <h3 className="text-xl font-bold text-white mt-2">{project.title}</h3>
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">
+                        {project.title}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Overlay with project info */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex flex-col justify-end p-6">
+                  <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                  <p className="text-gray-200 mb-4">{project.category}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.slice(0, 3).map((tech, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-white/20 text-white rounded-full text-sm flex items-center gap-2"
+                      >
+                        <Image
+                          src={tech.logo}
+                          alt={tech.name}
+                          width={16}
+                          height={16}
+                          className="object-contain"
+                        />
+                        {tech.name}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
 import Image from 'next/image';
+import AnimatedExperienceTitle from './AnimatedExperienceTitle';
 
 const experiences = [
   {
@@ -43,34 +44,66 @@ const experiences = [
   }
 ];
 
+// Animation variants for timeline items
+const timelineItemVariants = {
+  hidden: (direction: 'left' | 'right') => ({
+    opacity: 0,
+    x: direction === 'left' ? -100 : 100,
+  }),
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+      duration: 0.5
+    }
+  }
+};
+
+// Animation variants for description items
+const descriptionItemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  })
+};
+
 export default function ExperienceTimeline() {
   return (
     <section id="experience" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border experience-glow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
+          <AnimatedExperienceTitle />
           <p className="text-gray-600 dark:text-gray-300">My professional journey and achievements</p>
         </motion.div>
-
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200/50 dark:bg-gray-700/50" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 shadow-[0_0_15px_rgba(0,0,0,0.3)]" />
 
           {/* Experience items */}
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                viewport={{ once: true }}
+                custom={index % 2 === 0 ? 'left' : 'right'}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={timelineItemVariants}
                 className={`relative flex items-center ${
                   index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                 }`}
@@ -78,10 +111,10 @@ export default function ExperienceTimeline() {
                 {/* Content */}
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
                   <motion.div
-                    whileHover={{ scale: 1.05, rotate: 1 }}
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2 }}
-                    className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+                    className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all border border-blue-500/40 dark:border-purple-400/40 hover:border-blue-600 dark:hover:border-purple-500 shadow-blue-200 dark:shadow-purple-900"
                   >
                     <div className="flex items-center mb-4">
                       <motion.div 
@@ -112,9 +145,10 @@ export default function ExperienceTimeline() {
                       {exp.description.map((item, idx) => (
                         <motion.li 
                           key={idx}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: idx * 0.1 }}
+                          custom={idx}
+                          variants={descriptionItemVariants}
+                          initial="hidden"
+                          whileInView="visible"
                           viewport={{ once: true }}
                           className="text-gray-600 dark:text-gray-300 flex items-start"
                         >
@@ -131,7 +165,7 @@ export default function ExperienceTimeline() {
                   whileHover={{ scale: 1.2, rotate: 180 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-600 dark:bg-blue-400 rounded-full flex items-center justify-center shadow-lg"
+                  className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 rounded-full flex items-center justify-center shadow-lg"
                 >
                   <Briefcase className="w-4 h-4 text-white" />
                 </motion.div>
@@ -140,6 +174,14 @@ export default function ExperienceTimeline() {
           </div>
         </div>
       </div>
+      <style jsx global>{`
+@keyframes cd-bounce-2 {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+  50% { transform: translateY(-20px); }
+  70% { transform: translateY(-10px); }
+}
+`}</style>
     </section>
   );
 }

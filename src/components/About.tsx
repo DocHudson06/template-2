@@ -2,11 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import styles from './About.module.css';
+import AnimatedTitle from './AnimatedTitle';
+import { User } from 'lucide-react';
 
 export default function About() {
   return (
     <section id="about" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border about-glow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -14,7 +17,7 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">About Me</h2>
+          <AnimatedTitle text="About Me!!" />
           <p className="text-gray-600 dark:text-gray-300">Get to know me better</p>
         </motion.div>
 
@@ -27,15 +30,21 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="relative"
           >
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-2xl opacity-20" />
-              <Image
-                src="/images/about.jpg"
-                alt="About Me"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover rounded-2xl"
-              />
+            <div className={styles.imageContainer}>
+              <div className={styles.gradientBorder}>
+                <div className={styles.gradientBorderInner}>
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      src="/images/about.jpg"
+                      alt="About Me"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 

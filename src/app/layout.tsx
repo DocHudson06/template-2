@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import BottomNavbar from "@/components/BottomNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative min-h-screen">
+          <div className="relative min-h-screen flex flex-col">
             {/* Gradient background */}
             <div className="fixed inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
             
@@ -35,10 +35,14 @@ export default function RootLayout({
               <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 dark:bg-purple-500/10 rounded-full blur-3xl floating" />
             </div>
 
-            {/* Content */}
-            <div className="relative z-10">
-              <Navbar />
+            {/* Main Content */}
+            <main className="flex-1 relative z-10 pb-24">
               {children}
+            </main>
+            
+            {/* Bottom Navigation */}
+            <div className="relative z-50">
+              <BottomNavbar />
             </div>
           </div>
         </ThemeProvider>

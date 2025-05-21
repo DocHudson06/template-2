@@ -40,7 +40,7 @@ const education = [
 export default function Education() {
   return (
     <section id="education" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm">
+      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border education-glow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,10 @@ export default function Education() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Education</h2>
+          <h2 className="inline-flex items-center gap-3 text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
+            <GraduationCap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            Education
+          </h2>
           <p className="text-gray-600 dark:text-gray-300">My academic journey</p>
         </motion.div>
 
