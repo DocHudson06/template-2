@@ -76,7 +76,8 @@ export default function ContactInfo() {
 
   return (
     <section id="contact" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border contact-glow">
+      {/* Main container with fully opaque background for better readability */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +128,7 @@ export default function ContactInfo() {
           {/* Contact Information */}
           <div className="w-full lg:w-1/2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          {contacts.map((item, idx) => (
+              {contacts.map((item, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
@@ -136,29 +137,29 @@ export default function ContactInfo() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="flex items-start space-x-4"
                 >
-              <div className="p-3 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-full">
-                {item.icon}
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold">{item.label}</h3>
-                <div className="text-gray-600 dark:text-gray-300">{item.value}</div>
-              </div>
+                  <div className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-black dark:text-white">{item.label}</h3>
+                    <div className="text-gray-600 dark:text-gray-300">{item.value}</div>
+                  </div>
                 </motion.div>
-          ))}
-        </div>
+              ))}
+            </div>
 
-        {/* Centered Download CV Button */}
-        <div className="flex justify-center">
-          <motion.a
-            href="/cv.pdf"
-            download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300"
-          >
-            <Download className="w-5 h-5" />
-            <span>Download CV</span>
-          </motion.a>
+            {/* Centered Download CV Button */}
+            <div className="flex justify-center">
+              <motion.a
+                href="/cv.pdf"
+                download
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300"
+              >
+                <Download className="w-5 h-5" />
+                <span>Download CV</span>
+              </motion.a>
             </div>
           </div>
         </div>

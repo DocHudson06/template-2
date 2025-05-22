@@ -103,28 +103,28 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="relative w-full max-w-4xl bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl bg-white dark:bg-black rounded-xl shadow-2xl overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
           <button
             onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+            className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           >
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 text-black dark:text-white" />
           </button>
           
         <div className="p-6">
-          <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
+          <h2 className="text-3xl font-bold mb-2 text-black dark:text-white">{project.title}</h2>
           <p className="text-gray-600 dark:text-gray-300 mb-4">{project.category}</p>
           <p className="text-gray-700 dark:text-gray-200 mb-6">{project.description}</p>
           
           <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Technologies Used</h3>
+            <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">Technologies Used</h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm flex items-center gap-2"
+                  className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-sm flex items-center gap-2"
                 >
                   <Image
                     src={tech.logo}
@@ -145,7 +145,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-gray-800 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
               >
                 <Github className="w-5 h-5" />
                 View Code
@@ -156,7 +156,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                   href={project.article}
                   target="_blank"
                   rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
                 >
                   <BookOpen className="w-5 h-5" />
                   Read Article
@@ -174,87 +174,60 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border portfolio-glow">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <AnimatedSectionTitle
-            title="Portfolio"
-            icon={FolderGit2}
-            description="Check out some of my recent work"
-          />
-        </motion.div>
+      {/* Main container with fully opaque background for better readability */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+        <AnimatedSectionTitle
+          title="Portfolio"
+          icon={FolderGit2}
+          description="My recent projects and work"
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="group cursor-pointer"
+              transition={{ duration: 0.5 }}
+              className="bg-gray-50 dark:bg-gray-900 rounded-xl overflow-hidden cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative w-full" style={{ aspectRatio: '9/16' }}>
-                {/* Project cover image or placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-400/20 dark:to-purple-400/20 rounded-xl overflow-hidden">
-                  {project.image ? (
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-gray-400 dark:text-gray-500">
-                        {project.title}
-                      </span>
-                    </div>
-                  )}
+              {project.image && (
+                <div className="relative h-48">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                
-                {/* Overlay with project info */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex flex-col justify-end p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-gray-200 mb-4">{project.category}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 bg-white/20 text-white rounded-full text-sm flex items-center gap-2"
-                      >
-                        <Image
-                          src={tech.logo}
-                          alt={tech.name}
-                          width={16}
-                          height={16}
-                          className="object-contain"
-                        />
-                        {tech.name}
-                      </span>
-                    ))}
-                  </div>
+              )}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">{project.title}</h3>
+                <p className="text-blue-600 dark:text-blue-400 mb-4">{project.category}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech.name}
+                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-sm"
+                    >
+                      {tech.name}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {selectedProject && (
+            <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+          )}
+        </AnimatePresence>
+      </div>
     </section>
   );
 } 

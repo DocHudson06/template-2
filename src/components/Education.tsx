@@ -40,7 +40,7 @@ const education = [
 export default function Education() {
   return (
     <section id="education" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border education-glow">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function Education() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all"
+              className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all border border-gray-200 dark:border-gray-800"
             >
               <div className="flex flex-col md:flex-row gap-6">
                 {/* School Logo */}
@@ -84,7 +84,7 @@ export default function Education() {
                 <div className="flex-grow">
                   <div className="flex items-start justify-between flex-wrap gap-4 mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold mb-1">{edu.degree}</h3>
+                      <h3 className="text-xl font-semibold mb-1 text-black dark:text-white">{edu.degree}</h3>
                       <p className="text-gray-600 dark:text-gray-300">{edu.school}</p>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
@@ -96,12 +96,12 @@ export default function Education() {
                   <p className="text-gray-600 dark:text-gray-300 mb-4">{edu.description}</p>
 
                   <div>
-                    <h4 className="text-sm font-semibold mb-2">Key Courses:</h4>
+                    <h4 className="text-sm font-semibold mb-2 text-black dark:text-white">Key Courses:</h4>
                     <div className="flex flex-wrap gap-2">
                       {edu.courses.map((course, idx) => (
                         <span
                           key={idx}
-                          className="px-3 py-1 bg-white/10 dark:bg-gray-700/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full text-sm"
+                          className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-full text-sm border border-gray-200 dark:border-gray-700"
                         >
                           {course}
                         </span>

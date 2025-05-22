@@ -52,4 +52,16 @@
   100% {
     transform: translateY(0) rotate(360deg);
   }
+}
+
+.heroContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
 } 

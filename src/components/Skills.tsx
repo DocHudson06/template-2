@@ -43,7 +43,7 @@ const skills = [
 export default function Skills() {
   return (
     <section id="skills" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-gray-100/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border skills-glow">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,28 +57,42 @@ export default function Skills() {
           />
         </motion.div>
         <div className={styles.skillsContainer}>
-          <div className={styles.skillsList}>
+          <motion.div 
+            className={styles.skillsList}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             {skills.map((skill) => (
-              <span
+              <motion.span
                 key={skill.name}
                 className={styles.skillPill}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <span
                   className={styles.hexagon}
                   style={{ ['--hex-color' as any]: skill.color }}
                 />
                 {skill.name}
-              </span>
+              </motion.span>
             ))}
-          </div>
-          <div className={styles.imageContainer}>
+          </motion.div>
+          <motion.div 
+            className={styles.imageContainer}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <div className={styles.orbit} />
             <img
               src="/images/skills/your-image.png"
               alt="Skills visualization"
               className={styles.animatedImage}
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

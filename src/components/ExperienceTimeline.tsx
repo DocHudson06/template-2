@@ -79,7 +79,8 @@ const descriptionItemVariants = {
 export default function ExperienceTimeline() {
   return (
     <section id="experience" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white/20 dark:bg-gray-900/20 text-black dark:text-white rounded-2xl p-8 shadow-xl backdrop-blur-sm glow-border experience-glow">
+      {/* Main container with fully opaque background for better readability */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +115,7 @@ export default function ExperienceTimeline() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.2 }}
-                    className="bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm rounded-lg shadow-lg p-6 hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all border border-blue-500/40 dark:border-purple-400/40 hover:border-blue-600 dark:hover:border-purple-500 shadow-blue-200 dark:shadow-purple-900"
+                    className="bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg p-6 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all border border-blue-500/40 dark:border-purple-400/40 hover:border-blue-600 dark:hover:border-purple-500 shadow-blue-200 dark:shadow-purple-900"
                   >
                     <div className="flex items-center mb-4">
                       <motion.div 
@@ -130,7 +131,7 @@ export default function ExperienceTimeline() {
                         />
                       </motion.div>
                       <div>
-                        <h3 className="text-xl font-semibold">
+                        <h3 className="text-xl font-semibold text-black dark:text-white">
                           {exp.title}
                         </h3>
                         <p className="text-gray-600 dark:text-gray-300">
