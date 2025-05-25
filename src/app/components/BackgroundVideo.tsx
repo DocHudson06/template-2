@@ -1,29 +1,26 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 
 export default function BackgroundVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log('Video autoplay failed:', error);
-      });
-    }
+    setMounted(true);
   }, []);
 
+  if (!mounted) return null;
+
   return (
-    <div className="background-video-container">
+    <div className="fixed inset-0 w-full h-full overflow-hidden -z-10">
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className="background-video"
+        className="absolute min-w-full min-h-full object-cover"
         src={theme === 'dark' ? '/videos/bg-dark.mp4' : '/videos/bg-light.mp4'}
       />
     </div>

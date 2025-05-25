@@ -2,12 +2,12 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2rem;
+  bottom: 1.5rem;
   z-index: 9999;
   width: auto;
-  min-width: 300px;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
+  min-width: 260px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 1.5rem;
   background: var(--bottom-navbar-bg);
   backdrop-filter: blur(10px);
   box-shadow: 
@@ -29,7 +29,7 @@
 
 .navContainer {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -43,7 +43,7 @@
   color: white;
   background: transparent;
   border: none;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -64,28 +64,137 @@
 }
 
 .icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
+/* =========================================
+   Breakpoint: 1865px
+   - Reduces navbar size and spacing
+   - Adjusts padding and icon sizes
+   - Maintains visual consistency
+   ========================================= */
+@media (max-width: 1865px) {
   .bottomNavbar {
-    bottom: 1rem;
-    padding: 0.5rem 1rem;
-    min-width: 280px;
+    bottom: 2rem;
+    min-width: 320px;
+    padding: 0.75rem 1.5rem;
   }
 
   .navContainer {
-    gap: 1rem;
+    gap: 1.75rem;
   }
 
   .button {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
 
   .icon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* =========================================
+   Breakpoint: 1024px
+   - Further reduces navbar size
+   - Adjusts spacing and padding
+   - Maintains usability
+   ========================================= */
+@media (max-width: 1024px) {
+  .bottomNavbar {
+    min-width: 220px;
+    padding: 0.5rem 1rem;
+    border-radius: 1.25rem;
+    bottom: 1rem;
+  }
+  .navContainer {
+    gap: 1.25rem;
+  }
+  .button {
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+  }
+  .icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+/* =========================================
+   Breakpoint: 985px
+   - Continues size reduction
+   - Tightens spacing
+   - Maintains touch targets
+   ========================================= */
+@media (max-width: 985px) {
+  .bottomNavbar {
+    min-width: 180px;
+    padding: 0.4rem 0.75rem;
+    border-radius: 1rem;
+    bottom: 0.75rem;
+  }
+  .navContainer {
+    gap: 1rem;
+  }
+  .button {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
+
+/* =========================================
+   Breakpoint: 838px
+   - Further compact design
+   - Reduced spacing
+   - Smaller touch targets
+   ========================================= */
+@media (max-width: 838px) {
+  .bottomNavbar {
+    min-width: 150px;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.75rem;
+    bottom: 0.5rem;
+  }
+  .navContainer {
+    gap: 0.75rem;
+  }
+  .button {
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+  }
+  .icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* =========================================
+   Breakpoint: 601px
+   - Most compact design
+   - Minimal spacing
+   - Smallest touch targets
+   ========================================= */
+@media (max-width: 601px) {
+  .bottomNavbar {
+    min-width: 100px;
+    padding: 0.2rem 0.25rem;
+    border-radius: 0.5rem;
+    bottom: 0.25rem;
+  }
+  .navContainer {
+    gap: 0.4rem;
+  }
+  .button {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+  }
+  .icon {
+    width: 0.8rem;
+    height: 0.8rem;
   }
 } 

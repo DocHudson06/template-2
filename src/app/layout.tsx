@@ -8,8 +8,9 @@ import BackgroundVideo from "@/components/BackgroundVideo";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Jyothi Vardhana Rao Metta - Portfolio",
-  description: "Full Stack Developer & Cloud Engineer Portfolio",
+  title: "Portfolio",
+  description: "My personal portfolio website",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0",
 };
 
 export default function RootLayout({
@@ -19,12 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+      </head>
       <body className={inter.className}>
+        {/* ThemeProvider wraps the entire app to enable dark mode by default */}
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+          defaultTheme="dark"
+          enableSystem={true}
         >
           <div className="relative min-h-screen flex flex-col">
             {/* Global background - lowest layer */}

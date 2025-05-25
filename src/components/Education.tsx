@@ -40,7 +40,13 @@ const education = [
 export default function Education() {
   return (
     <section id="education" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+      {/* 
+        Main container background:
+        - Light mode: solid white (bg-white)
+        - Dark mode: theme-matching dark background (dark:bg-[#1a1f2e])
+        - Text colors: black in light mode, white in dark mode for optimal readability
+      */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

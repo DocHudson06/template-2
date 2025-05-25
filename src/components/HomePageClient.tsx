@@ -37,7 +37,7 @@ export default function HomePageClient() {
     <>
       {/* Navbar - floating UI, highest layer */}
       <div className="relative z-[50]">
-        <Navbar />
+      <Navbar />
       </div>
 
       {/* Main content container */}
@@ -47,78 +47,78 @@ export default function HomePageClient() {
 
         {/* Main content wrapper - above video */}
         <main className="relative z-[40]">
-          <Hero />
-          <motion.section
-            id="about"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-          >
-            <About />
-          </motion.section>
-          
-          <motion.section
-            id="experience"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-            className="py-16 px-4"
-          >
-            <div className="max-w-7xl mx-auto">
-              <ExperienceTimeline />
-            </div>
-          </motion.section>
+        <Hero />
+        <motion.section
+          id="about"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <About />
+        </motion.section>
+        
+        <motion.section
+          id="experience"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+          className="py-16 px-4"
+        >
+          <div className="max-w-7xl mx-auto">
+            <ExperienceTimeline />
+          </div>
+        </motion.section>
 
-          <motion.section
-            id="portfolio"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-          >
-            <Portfolio />
-          </motion.section>
+        <motion.section
+          id="portfolio"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <Portfolio />
+        </motion.section>
 
-          <motion.section
-            id="skills"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-          >
-            <Skills />
-          </motion.section>
+        <motion.section
+          id="skills"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <Skills />
+        </motion.section>
 
-          <motion.section
-            id="education"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-          >
-            <Education />
-          </motion.section>
+        <motion.section
+          id="education"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+        >
+          <Education />
+        </motion.section>
 
-          <motion.section
-            id="contact"
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            exit="exit"
-            className="py-16 px-4"
-          >
-            <div className="max-w-7xl mx-auto">
-              <ContactInfo />
-            </div>
-          </motion.section>
+        <motion.section
+          id="contact"
+          variants={sectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          exit="exit"
+          className="py-16 px-4"
+        >
+          <div className="max-w-7xl mx-auto">
+            <ContactInfo />
+          </div>
+        </motion.section>
         </main>
       </div>
 

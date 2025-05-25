@@ -8,15 +8,15 @@ import styles from './Skills.module.css';
 
 // Shortened skills list, each with a random value between 85 and 95
 const skills = [
-  { name: 'JavaScript', value: 92 },
-  { name: 'TypeScript', value: 89 },
-  { name: 'React', value: 94 },
-  { name: 'Next.js', value: 90 },
-  { name: 'Node.js', value: 87 },
+  { name: 'AWS', value: 92 },
+  { name: 'Azure Data Factory', value: 89 },
+  { name: 'Power BI', value: 94 },
+  { name: 'Tableau', value: 90 },
+  { name: 'Scala', value: 87 },
   { name: 'Python', value: 95 },
-  { name: 'Tailwind CSS', value: 88 },
-  { name: 'HTML/CSS', value: 91 },
-  { name: 'Express.js', value: 86 },
+  { name: 'Machine Learning', value: 88 },
+  { name: 'Data Modeling', value: 91 },
+  { name: ' Kubernetes', value: 86 },
 ];
 
 export default function Skills() {
@@ -40,7 +40,13 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+      {/* 
+        Main container background:
+        - Light mode: solid white (bg-white)
+        - Dark mode: theme-matching dark background (dark:bg-[#1a1f2e])
+        - Text colors: black in light mode, white in dark mode for optimal readability
+      */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

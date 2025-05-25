@@ -79,8 +79,7 @@ const descriptionItemVariants = {
 export default function ExperienceTimeline() {
   return (
     <section id="experience" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      {/* Main container with fully opaque background for better readability */}
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,15 +87,18 @@ export default function ExperienceTimeline() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <AnimatedExperienceTitle />
+          <h2 className="text-4xl max-[448px]:text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text max-w-full">
+            Work Experience
+          </h2>
           <p className="text-gray-600 dark:text-gray-300">My professional journey and achievements</p>
         </motion.div>
-        <div className="relative">
+        
+        <div className="relative experience-timeline">
           {/* Timeline line */}
           <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 shadow-[0_0_15px_rgba(0,0,0,0.3)]" />
 
           {/* Experience items */}
-          <div className="space-y-12">
+          <div className="timeline-items">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -105,7 +107,7 @@ export default function ExperienceTimeline() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={timelineItemVariants}
-                className={`relative flex items-center ${
+                className={`timeline-item flex items-center ${
                   index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
                 }`}
               >
@@ -176,13 +178,21 @@ export default function ExperienceTimeline() {
         </div>
       </div>
       <style jsx global>{`
-@keyframes cd-bounce-2 {
-  0%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-10px); }
-  50% { transform: translateY(-20px); }
-  70% { transform: translateY(-10px); }
-}
-`}</style>
+        @keyframes cd-bounce-2 {
+          0%, 100% { transform: translateY(0); }
+          30% { transform: translateY(-10px); }
+          50% { transform: translateY(-20px); }
+          70% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 448px) {
+          .experience-timeline h2 {
+            font-size: 1.25rem;
+            line-height: 1.3;
+            word-break: break-word;
+          }
+        }
+      `}</style>
     </section>
   );
 }

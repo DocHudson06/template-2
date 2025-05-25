@@ -9,7 +9,13 @@ import { User } from 'lucide-react';
 export default function About() {
   return (
     <section id="about" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+      {/* 
+        Main container with updated background colors:
+        - Light mode: solid white (bg-white)
+        - Dark mode: theme-matching dark background (dark:bg-[#1a1f2e])
+        - Text colors remain black in light mode and white in dark mode for optimal readability
+      */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,14 +59,14 @@ export default function About() {
             <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6">
               <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">Who I Am</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                I&apos;m a passionate Full Stack Developer and Cloud Engineer with a strong foundation in both frontend and backend technologies. With expertise in modern web frameworks and cloud platforms, I specialize in building scalable and performant applications.
+              I am a certified AWS Data Engineer and Developer Associate with 4 years of experience building cloud-native data lakes and real-time data pipelines. My passion lies in leveraging cloud technologies and advanced analytics to deliver actionable business insights and scalable solutions
               </p>
             </div>
 
             <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6">
               <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">My Journey</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Starting from my early days in software development, I&apos;ve worked on diverse projects ranging from enterprise applications to cloud infrastructure. My experience spans across various industries, giving me a unique perspective on solving complex technical challenges.
+              My journey began with a strong foundation in computer science and data engineering, working with organizations like Infosys, Digital IT Hub, and Bharat Dynamics Limited. I have led cross-functional teams, streamlined ETL processes, and implemented robust cloud architectures that accelerated analytics and reduced costs.
               </p>
             </div>
 
@@ -69,11 +75,11 @@ export default function About() {
               <ul className="space-y-3 text-gray-600 dark:text-gray-300">
                 <li className="flex items-start">
                   <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Develop modern web applications using React, Next.js, and TypeScript
+                  Architecting and Automating Cloud-Native Data Pipelines using AWS Services like Glue, Lambda, and Kinesis
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Design and implement scalable cloud solutions on AWS
+                  Streamlining ETL and Analytics for Faster Insights.
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
@@ -81,7 +87,7 @@ export default function About() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Create efficient database architectures and optimize performance
+                  Working with Teams to Deliver Secure, Efficient Cloud Solutions.
                 </li>
               </ul>
             </div>

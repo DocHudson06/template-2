@@ -24,15 +24,15 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'project1',
-    title: 'Latest CSS Guides',
-    category: 'Featured Project',
-    description: 'A comprehensive collection of modern CSS techniques and best practices. Includes guides on animations, layouts, and responsive design.',
+    title: 'EV Infrastructure & Housing Market Analysis',
+    category: 'Data Analytics Project',
+    description: 'Explored how proximity to EV charging stations may influence housing prices and how state income levels affect EV sales. This project uncovers key economic drivers behind EV adoption and infrastructure, providing insights into sustainable transportation trends.',
     technologies: [
-      { name: 'CSS3', logo: '/logos/css3.png' },
-      { name: 'Sass', logo: '/logos/sass.png' },
-      { name: 'Tailwind', logo: '/logos/tailwind.png' }
+      { name: 'Python', logo: '/logos/python.png' },
+      { name: 'Pandas', logo: '/logos/pandas.png' },
+      { name: 'AWS', logo: '/logos/aws.png' }
     ],
-    github: 'https://github.com/yourusername/css-guides',
+    github: 'https://github.com/Jyothivardhana0009/EV_analysis',
     article: 'https://medium.com/@vardhanrao9849/css-guides',
     image: '/images/portfolio-covers/project1-cover.jpg'
   },
@@ -46,7 +46,7 @@ const projects: Project[] = [
       { name: 'Express', logo: '/logos/express.png' },
       { name: 'MongoDB', logo: '/logos/mongodb.png' }
     ],
-    github: 'https://github.com/yourusername/weather-api',
+    github: 'https://github.com/https://github.com/Jyothivardhana0009/API/weather-api',
     article: 'https://medium.com/@vardhanrao9849/ev-analysis-e62bf7abf8da',
     image: '/images/portfolio-covers/project2-cover.jpg'
   },
@@ -156,7 +156,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                   href={project.article}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors"
                 >
                   <BookOpen className="w-5 h-5" />
                   Read Article
@@ -174,13 +174,24 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
-      {/* Main container with fully opaque background for better readability */}
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
-        <AnimatedSectionTitle
-          title="Portfolio"
-          icon={FolderGit2}
+      {/* 
+        Main container with updated background colors:
+        - Light mode: solid white (bg-white)
+        - Dark mode: theme-matching dark background (dark:bg-[#1a1f2e])
+        - Text colors remain black in light mode and white in dark mode for optimal readability
+      */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
+        {/* 
+          Main container background:
+          - Light mode: solid white (bg-white)
+          - Dark mode: theme-matching dark background (dark:bg-[#1a1f2e])
+          - Text colors: black in light mode, white in dark mode for optimal readability
+        */}
+          <AnimatedSectionTitle
+            title="Portfolio"
+            icon={FolderGit2}
           description="My recent projects and work"
-        />
+          />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
@@ -195,38 +206,38 @@ export default function Portfolio() {
             >
               {project.image && (
                 <div className="relative h-48">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                      className="object-cover"
+                    />
                 </div>
               )}
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-black dark:text-white">{project.title}</h3>
                 <p className="text-blue-600 dark:text-blue-400 mb-4">{project.category}</p>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
-                    <span
+                      <span
                       key={tech.name}
                       className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-full text-sm"
-                    >
-                      {tech.name}
-                    </span>
-                  ))}
+                      >
+                        {tech.name}
+                      </span>
+                    ))}
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
+      </div>
 
-        <AnimatePresence>
-          {selectedProject && (
+      <AnimatePresence>
+        {selectedProject && (
             <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-          )}
-        </AnimatePresence>
+        )}
+      </AnimatePresence>
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="relative z-10 py-12 px-4 sm:px-6 lg:px-8">
       {/* Main container with fully opaque background for better readability */}
-      <div className="max-w-7xl mx-auto bg-white dark:bg-black text-black dark:text-white rounded-2xl p-8 shadow-xl">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-[#1a1f2e] text-black dark:text-white rounded-2xl p-8 shadow-xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Contact Info */}
           <div>

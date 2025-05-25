@@ -44,6 +44,7 @@
     --bottom-navbar-glow-secondary: rgba(236, 72, 153, 0.45);
     --bottom-navbar-glow-tertiary: rgba(236, 72, 153, 0.25);
     --bottom-navbar-border: rgba(236, 72, 153, 0.3);
+    --hero-bg: #f9fafb; /* Light theme background */
   }
 
   .dark {
@@ -74,6 +75,7 @@
     --bottom-navbar-glow-secondary: rgba(59, 130, 246, 0.45);
     --bottom-navbar-glow-tertiary: rgba(59, 130, 246, 0.25);
     --bottom-navbar-border: rgba(59, 130, 246, 0.3);
+    --hero-bg: #111827; /* Dark theme background */
   }
 }
 
@@ -88,7 +90,7 @@
 }
 
 /* Responsive body padding for bottom navbar */
-@media (max-width: 640px) {
+@media (max-width: 40rem) { /* 640px */
   body {
     padding-bottom: 5rem;
   }
@@ -113,6 +115,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px; /* Base font size for rem calculations */
 }
 
 body {
@@ -126,6 +129,8 @@ body {
     rgb(255, 255, 255) 100%
   );
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .dark body {
@@ -173,13 +178,13 @@ body::before {
 /* Floating animation for background elements */
 @keyframes float {
   0% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-1.25rem); /* 20px */
   }
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
 }
 
@@ -441,5 +446,128 @@ body::before {
   100% {
     background-position: 0% 50%;
     box-shadow: 0 0 var(--glow-intensity) currentColor;
+  }
+}
+
+@layer utilities {
+  /* Border utilities that respect theme */
+  .border-border {
+    @apply border-[rgb(228_228_231)] dark:border-[rgb(63_63_70)];
+  }
+}
+
+/* Experience Timeline Responsive Adjustments */
+@media (max-width: 831px) {
+  /* Timeline Items Container */
+  .timeline-items {
+    display: flex;
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    padding-left: 0.5rem;
+  }
+
+  /* Individual Timeline Items */
+  .timeline-item {
+    align-items: flex-start !important;
+    text-align: left !important;
+    margin-bottom: 2rem !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Timeline Content */
+  .timeline-item > div[class*="w-1/2"] {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* Timeline Line (Vertical Bar) */
+  .experience-timeline .absolute.left-1\/2.transform {
+    left: 20px !important;
+    transform: none !important;
+    width: 4px !important;
+    height: 100% !important;
+    background: linear-gradient(to bottom, #3b82f6, #a21caf, #3b82f6);
+    z-index: 0;
+  }
+
+  /* Timeline Dot */
+  .timeline-item .absolute.left-1\/2 {
+    left: 12px !important;
+    transform: none !important;
+    position: relative !important;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    z-index: 1;
+  }
+
+  /* Timeline Heading and Subtitle */
+  .experience-timeline .text-center {
+    text-align: left !important;
+    margin-bottom: 1.5rem !important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .experience-timeline h2,
+  .experience-timeline .animated-experience-title,
+  .experience-timeline .animated-title {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .experience-timeline p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    text-align: left !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  @media (max-width: 448px) {
+    .experience-timeline h2 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+      word-break: break-word; /* Ensures break if needed */
+    }
+  }
+  
+  
+}
+
+/* Background Video Styles */
+.background-video-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Behind all content */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: black;
+}
+
+/* Optional: dim/blur for mobile */
+@media (max-width: 601px) {
+  .background-video {
+    filter: blur(2px) brightness(0.7);
   }
 }

@@ -1,67 +1,264 @@
-.animation {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-.animation:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  animation: float 6s ease-in-out infinite;
-}
-
-.animation:nth-child(2) {
-  top: 60%;
-  left: 20%;
-  animation: float 8s ease-in-out infinite;
-}
-
-.animation:nth-child(3) {
-  top: 30%;
-  right: 20%;
-  animation: float 7s ease-in-out infinite;
-}
-
-.animation:nth-child(4) {
-  bottom: 20%;
-  right: 10%;
-  animation: float 9s ease-in-out infinite;
-}
-
-.animation:nth-child(5) {
-  top: 50%;
-  left: 50%;
-  animation: float 10s ease-in-out infinite;
-}
-
-.animation:nth-child(6) {
-  bottom: 30%;
-  left: 30%;
-  animation: float 11s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
-  100% {
-    transform: translateY(0) rotate(360deg);
-  }
-}
-
 .heroContainer {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  background: transparent;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroContent {
   position: relative;
   z-index: 1;
-} 
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 2rem 2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.heroHeading {
+  font-weight: bold;
+  font-size: 2.75rem;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  max-width: 600px;
+  text-align: left;
+}
+
+.headingLine {
+  display: block;
+}
+
+.hero__titleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.hero__prefix {
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.hero__animatedTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #2563eb, #9333ea, #db2777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__profileImageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.hero__profileImage {
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12);
+  object-fit: contain;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  background: transparent;
+}
+
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+}
+
+.hero__button {
+  padding: 0.75rem 2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.primaryButton {
+  background: linear-gradient(90deg, #2563eb, #9333ea);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.08);
+}
+
+.primaryButton:hover {
+  background: linear-gradient(90deg, #1e40af, #7c3aed);
+}
+
+.secondaryButton {
+  background: #fff;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+}
+
+.secondaryButton:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.socialIcons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  font-size: 2rem;
+  color: #2563eb;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.socialIcons a {
+  color: inherit;
+  border-radius: 50%;
+  padding: 0.5rem;
+  background: transparent;
+  transition: color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.socialIcons a:hover {
+  color: #9333ea;
+  background: #e0e7ff;
+  transform: scale(1.1);
+}
+
+[data-theme='dark'] .socialIcons a {
+  color: #3b82f6;
+}
+
+[data-theme='dark'] .socialIcons a:hover {
+  color: #f472b6;
+  background: #1e293b;
+}
+
+.heroDescription {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 36rem;
+  text-align: left;
+}
+
+.imageColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroImage {
+  width: 24rem;
+  height: 24rem;
+  object-fit: contain;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.12);
+  background: #fff;
+}
+
+/* ========== Responsive Styles ========== */
+
+/* ≤ 1024px: Center text, enlarge heading & animated title, image below */
+@media (max-width: 1024px) {
+  .heroContent {
+    padding-top: 2rem;
+  }
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .textColumn, .heroHeading, .hero__titleRow, .heroDescription {
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+  }
+  .heroHeading {
+    font-size: 2.25rem;
+    max-width: 100%;
+  }
+  .hero__titleRow, .hero__animatedTitle {
+    font-size: 2rem;
+  }
+  .imageColumn {
+    margin-top: 2rem;
+  }
+}
+
+/* ≤ 838px: Stack "I am a" and animated title vertically, center everything */
+@media (max-width: 838px) {
+  .heroHeading {
+    font-size: 1.75rem;
+  }
+  .hero__titleRow {
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 1.3rem;
+  }
+  .hero__animatedTitle {
+    font-size: 1.3rem;
+  }
+  .heroImage {
+    width: 16rem;
+    height: 16rem;
+  }
+}
+
+/* ≤ 631px: Further stack, shrink sizes, center all */
+@media (max-width: 631px) {
+  .heroContent {
+    padding: 1.5rem 0.5rem;
+  }
+  .heroHeading {
+    font-size: 1.25rem;
+    line-height: 1.15;
+  }
+  .hero__titleRow, .hero__animatedTitle {
+    font-size: 1rem;
+  }
+  .heroImage {
+    width: 12rem;
+    height: 12rem;
+  }
+}

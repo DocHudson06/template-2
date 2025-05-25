@@ -1,190 +1,136 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
-import styles from './Hero.module.css';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
 import AnimatedJobTitles from './AnimatedJobTitles';
 
 export default function Hero() {
+  const { theme } = useTheme();
+
+  const iconColor =
+    theme === 'dark'
+      ? 'text-blue-500'
+      : 'text-pink-500';
+
   return (
-    <section className={styles.heroContainer} id="home">
-      <div className={styles.heroContent}>
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-          {/* Enhanced gradient overlays */}
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-blue-500/10 to-transparent dark:from-blue-500/20" />
-          <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-t from-purple-500/10 to-transparent dark:from-purple-500/20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-white/70 to-transparent dark:via-gray-800/70" />
-          {/* Additional corner gradients */}
-          <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-to-br from-blue-400/5 to-transparent dark:from-blue-400/10" />
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-purple-400/5 to-transparent dark:from-purple-400/10" />
-          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-blue-400/5 to-transparent dark:from-blue-400/10" />
-          <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-purple-400/5 to-transparent dark:from-purple-400/10" />
-        </div>
+    <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-black transition-colors duration-500">
+      {/* Floating triangle shapes */}
+      <img
+        src="/vectors/triangle.svg"
+        alt="Triangle Shape"
+        className="absolute top-10 left-10 w-32 h-32 floating pointer-events-none select-none"
+        draggable={false}
+      />
+      <img
+        src="/vectors/triangle.svg"
+        alt="Triangle Shape"
+        className="absolute bottom-10 right-10 w-24 h-24 floating pointer-events-none select-none"
+        draggable={false}
+      />
 
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 dark:bg-purple-500/10 rounded-full blur-3xl" />
-          {/* Triangle animations */}
-          {[...Array(6)].map((_, i) => (
-            <motion.span
-              key={`triangle-${i}`}
-              className={styles.animation}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 1,
-                delay: i * 0.2,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-            >
-              <img src="/vectors/triangle.svg" alt="background shape" />
-            </motion.span>
-          ))}
-          {/* Atom animations */}
-          {[...Array(3)].map((_, i) => (
-            <motion.span
-              key={`triangle-${i}`}
-              className={styles.animation}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 1,
-                delay: i * 0.3,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }}
-              style={{
-                position: 'absolute',
-                top: `${20 + i * 30}%`,
-                left: `${60 + i * 10}%`,
-                transform: 'translate(-50%, -50%)'
-              }}
-            >
-              <img src="/vectors/triangle.svg" alt="background shape" />
-            </motion.span>
-          ))}
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden pt-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* Left column - Text content */}
-            <motion.div
+      <section id="home" className="relative z-10 w-full max-w-7xl mx-auto px-4 pt-32 pb-12">
+        <div className="flex flex-col-reverse lg:flex-row gap-12 w-full">
+          {/* Left: Content */}
+          <div className="flex-1 flex flex-col items-center lg:items-start">
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center lg:text-left"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="font-bold w-full text-4xl md:text-5xl lg:text-7xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 text-center lg:text-left max-w-2xl"
             >
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
-              >
-                Hi, I&apos;m Jyothi Vardhana Rao Metta
-              </motion.h1>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <AnimatedJobTitles
-                  titles={[
-                    "Full Stack Developer",
-                    "Cloud Engineer",
-                    "DevOps Enthusiast",
-                    "UI/UX Designer",
-                    "Problem Solver"
-                  ]}
-                  prefix="I am a"
-                  className="text-2xl sm:text-3xl font-semibold text-gray-600 dark:text-gray-300 mb-8"
-                />
-              </motion.div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0"
-              >
-                I build modern web applications and cloud solutions with a focus on performance, scalability, and user experience.
-              </motion.p>
+              Hi, I&apos;m<br />
+              Jyothi Vardhana Rao Metta
+            </motion.h1>
 
-              {/* Social links */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-6 mb-2"
+            <div className="flex max-[836px]:flex-col flex-row items-center gap-3 mb-6 text-lg md:text-xl font-semibold">
+              <span className="whitespace-nowrap text-gray-600 dark:text-gray-300">I am a</span>
+              <AnimatedJobTitles
+                titles={[
+                  "Data Pipeline Architect",
+                  "Cloud Engineer",
+                  "DevOps Enthusiast",
+                  "Business Analyst",
+                  "Problem Solver"
+                ]}
+                className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
+              />
+            </div>
+
+            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg text-center lg:text-left">
+            I design and optimize data pipelines and cloud architectures, leveraging DevOps practices and analytical expertise to deliver scalable, efficient, and business-focused technology solutions.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-wrap gap-4 mb-6 w-full justify-center lg:justify-start">
+              <a
+                href="#contactinfo"
+                className="px-6 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow transition
+                  hover:from-blue-700 hover:to-purple-700 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
-                <motion.a
+                Contact Me
+              </a>
+              <a
+                href="#portfolio"
+                className="px-6 py-2 rounded-full font-semibold text-blue-600 border-2 border-blue-600 bg-white hover:bg-blue-50 transition
+                  hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:border-transparent hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                View My Work
+              </a>
+            </div>
+
+            {/* Social Icons in one rounded container */}
+            <div className="flex w-full items-center justify-center lg:justify-start">
+              <div className="flex gap-5 p-3 rounded-2xl bg-gray-100 dark:bg-gray-800 shadow-inner">
+                <a
                   href="https://github.com/Jyothivardhana0009"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
+                  aria-label="GitHub"
+                  className={`transition rounded-full p-2 ${iconColor} hover:scale-110`}
                 >
-                  <Github className="w-6 h-6" />
-                </motion.a>
-                <motion.a
+                  <FaGithub size={24} />
+                </a>
+                <a
                   href="https://www.linkedin.com/in/jyothi-vardhana-rao-metta-515213193/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
+                  aria-label="LinkedIn"
+                  className={`transition rounded-full p-2 ${iconColor} hover:scale-110`}
                 >
-                  <Linkedin className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  href="mailto:vardhanrao9849@gmail.com"
-                  whileHover={{ scale: 1.25 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
+                  <FaLinkedin size={24} />
+                </a>
+                <a
+                  href="mailto:jyothivardhana0009@gmail.com"
+                  aria-label="Email"
+                  className={`transition rounded-full p-2 ${iconColor} hover:scale-110`}
                 >
-                  <Mail className="w-6 h-6" />
-                </motion.a>
-              </motion.div>
+                  <FaEnvelope size={24} />
+                </a>
+                <a
+                  href="https://leetcode.com/problemset/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LeetCode"
+                  className={`transition rounded-full p-2 ${iconColor} hover:scale-110`}
+                >
+                  <SiLeetcode size={24} />
+                </a>
+              </div>
+            </div>
+          </div>
 
-              {/* CTA buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1 }}
-                className="flex flex-wrap justify-center lg:justify-start gap-6"
-              >
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 text-lg font-semibold"
-                >
-                  Get in Touch
-                </motion.a>
-                <motion.a
-                  href="#portfolio"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300 text-lg font-semibold"
-                >
-                  View My Work
-                </motion.a>
-              </motion.div>
-            </motion.div>
-
-            {/* Right column - Profile image */}
+          {/* Right: Image */}
+          <div className="flex-1 flex justify-center lg:justify-end">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="relative flex justify-center lg:justify-end items-start"
+              className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[28rem] md:h-[28rem] lg:w-[36rem] lg:h-[36rem]"
             >
               <motion.div 
-                className="relative w-[28rem] h-[28rem] min-w-[18rem] min-h-[18rem]"
                 animate={{
                   y: [0, -15, 0, 15, 0],
                   x: [0, 15, 0, -15, 0],
@@ -194,37 +140,21 @@ export default function Hero() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
+                className="w-full h-full"
               >
                 <Image
                   src="/images/profile.png"
                   alt="Jyothi Vardhana Rao Metta"
                   fill
-                  sizes="(max-width: 768px) 448px, 448px"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 576px"
+                  className="object-cover rounded-3xl"
                   priority
                 />
               </motion.div>
             </motion.div>
           </div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.a
-              href="#about"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="p-4 bg-white/10 dark:bg-gray-800/10 backdrop-blur-sm text-gray-600 dark:text-gray-300 rounded-full hover:bg-white/20 dark:hover:bg-gray-800/20 transition-all duration-300"
-            >
-              <ArrowDown className="w-6 h-6 animate-bounce" />
-            </motion.a>
-          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
-} 
+}

@@ -1,8 +1,17 @@
+/**
+ * This is the single source of truth for Tailwind CSS configuration in this TypeScript project.
+ * It combines all theme customizations, animations, and plugins into one centralized config.
+ */
+
 import type { Config } from "tailwindcss";
 
 const config = {
-    darkMode: ["class"],
-    content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+    darkMode: ["class"], // Enable class-based dark mode
+    content: [
+        './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+        './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    ],
     theme: {
         extend: {
             backgroundImage: {
@@ -15,6 +24,11 @@ const config = {
                 sm: 'calc(var(--radius) - 4px)'
             },
             colors: {
+                // Custom dark theme color used across components
+                dark: {
+                    DEFAULT: '#301934', // Custom dark purple background
+                },
+                // System theme colors
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 card: {
@@ -55,7 +69,16 @@ const config = {
                     '4': 'hsl(var(--chart-4))',
                     '5': 'hsl(var(--chart-5))'
                 }
-            }
+            },
+            animation: {
+                'floating': 'floating 3s ease-in-out infinite',
+            },
+            keyframes: {
+                floating: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-20px)' },
+                },
+            },
         }
     },
     plugins: [require("tailwindcss-animate")],
