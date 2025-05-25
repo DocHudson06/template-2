@@ -7,38 +7,38 @@ import AnimatedExperienceTitle from './AnimatedExperienceTitle';
 
 const experiences = [
   {
-    title: 'Systems Engineer',
-    company: 'Infosys Pvt Ltd. (Florida Power and Light)',
+    title: 'Software Engineer',
+    company: 'Infosys Pvt Ltd. (Client-NextEra Energy Inc.)',
     period: 'Dec 2021 - Jul 2023',
     description: [
-      'Built scalable pipelines using AWS Glue, Lambda, and MSK',
-      'Improved delivery speed by 15% with cross-functional collaboration',
-      'Developed and maintained enterprise web applications',
-      'Implemented CI/CD pipelines for faster deployments'
+      'Built and deployed 7+ real-time AWS data pipelines to boost processing capacity and enable seamless team adoption.',
+      'Developed PySpark ETL in AWS Glue, improving Redshift analytics throughput by 20%.',
+      'Automated 25 event-driven Airflow DAGs on ECS Fargate, reducing data latency by 70%.',
+      'Secured 12 dashboards with dynamic RLS and role-based access for 600 users.'
     ],
     logo: '/images/clients/infosys.jpg',
   },
   {
-    title: 'Software Developer',
+    title: 'Data Engineer',
     company: 'Digital IT Hub',
-    period: 'Jan 2020 - Dec 2021',
+    period: 'Jan 2020 - Nov 2021',
     description: [
-      'Developed full-stack applications using React and Node.js',
-      'Implemented real-time data processing solutions',
-      'Optimized database queries resulting in 30% performance improvement',
-      'Mentored junior developers and conducted code reviews'
+      'Created 30+ CloudFormation stacks with CI/CD for rapid, versioned environment provisioning',
+      'Designed modular DBT SQL models, increasing ETL performance by 35%',
+      'Automated data ingestion and transformation in Azure Databricks, cutting runtimes by 60%',
+      'Enhanced analytics scalability with optimized MySQL and robust data models'
     ],
     logo: '/images/clients/digital-it.jpg',
   },
   {
-    title: 'Junior Developer',
-    company: 'Bharat Dynamics',
-    period: 'Jun 2019 - Dec 2019',
+    title: 'Intern',
+    company: 'Bharat Dynamics Limited (Government of India Enterprise)',
+    period: 'Feb 2019 - Jul 2019',
     description: [
-      'Assisted in developing internal tools and utilities',
-      'Participated in code reviews and testing procedures',
-      'Contributed to documentation and knowledge base',
-      'Worked on bug fixes and feature implementations'
+      'Standardized 50 GB of geo-location data with Python for accurate analysis.',
+      'Improved Oracle SQL and PL/SQL procedures, reducing execution time by 45%.',
+      'Monitored 15+ Kafka jobs to ensure 99.9% uptime.',
+      'Managed OBIA/OBIEE installations for enterprise reporting reliability.'
     ],
     logo: '/images/clients/bdl.jpg',
   }

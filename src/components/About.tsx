@@ -71,25 +71,12 @@ export default function About() {
             </div>
 
             <div className="bg-gray-50 dark:bg-gray-900 rounded-xl p-6">
-              <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">What I Do</h3>
-              <ul className="space-y-3 text-gray-600 dark:text-gray-300">
-                <li className="flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Architecting and Automating Cloud-Native Data Pipelines using AWS Services like Glue, Lambda, and Kinesis
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Streamlining ETL and Analytics for Faster Insights.
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Build robust backend services with Node.js and Python
-                </li>
-                <li className="flex items-start">
-                  <span className="text-blue-600 dark:text-blue-400 mr-2">•</span>
-                  Working with Teams to Deliver Secure, Efficient Cloud Solutions.
-                </li>
-              </ul>
+              <h3 className="text-2xl font-semibold mb-4 text-black dark:text-white">
+                My Life, Unfiltered
+              </h3>
+              <p className="text-lg mb-4 text-gray-700 dark:text-gray-300">
+                Beyond my work in tech, I'm passionate about fitness, photography, culinary exploration, and immersing myself in manga, manhwa, and anime—always seeking new adventures and creative inspiration in every aspect of life.
+              </p>
             </div>
           </motion.div>
         </div>

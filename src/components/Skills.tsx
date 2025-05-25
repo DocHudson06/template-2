@@ -11,10 +11,10 @@ const skills = [
   { name: 'AWS', value: 92 },
   { name: 'Azure Data Factory', value: 89 },
   { name: 'Power BI', value: 94 },
-  { name: 'Tableau', value: 90 },
-  { name: 'Scala', value: 87 },
+  { name: 'Airflow', value: 90 },
+  { name: 'Docker', value: 87 },
   { name: 'Python', value: 95 },
-  { name: 'Machine Learning', value: 88 },
+  { name: 'Snowflake', value: 88 },
   { name: 'Data Modeling', value: 91 },
   { name: ' Kubernetes', value: 86 },
 ];
