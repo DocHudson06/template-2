@@ -75,7 +75,7 @@ export default function About() {
                 My Life, Unfiltered
               </h3>
               <p className="text-lg mb-4 text-gray-700 dark:text-gray-300">
-                Beyond my work in tech, I'm passionate about fitness, photography, culinary exploration, and immersing myself in manga, manhwa, and anime—always seeking new adventures and creative inspiration in every aspect of life.
+                Beyond my work in tech, I&aposm passionate about fitness, photography, culinary exploration, and immersing myself in manga, manhwa, and anime—always seeking new adventures and creative inspiration in every aspect of life.
               </p>
             </div>
           </motion.div>
